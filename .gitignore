@@ -14,3 +14,6 @@ python/ignored/
 
 # main data folder
 /data/
+
+.devenv*
+devenv.local.nix
