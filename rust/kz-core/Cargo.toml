@@ -33,3 +33,6 @@ serde.workspace = true
 serde_json.workspace = true
 shakmaty.workspace = true
 shakmaty-syzygy.workspace = true
+
+trictrac-bot.workspace = true
+trictrac-store.workspace = true

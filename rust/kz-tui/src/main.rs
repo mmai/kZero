@@ -22,6 +22,7 @@ use kn_graph::optimizer::optimize_graph;
 use kn_runtime::{compiled_with_cuda_support, Device};
 use rand::rngs::StdRng;
 use rand::{thread_rng, SeedableRng};
+use trictrac_bot::trictrac_board::TrictracBoard;
 use tui::backend::CrosstermBackend;
 use tui::buffer::Buffer;
 use tui::layout::{Margin, Rect};
@@ -32,6 +33,7 @@ use tui::Terminal;
 use kz_core::mapping::ataxx::AtaxxStdMapper;
 use kz_core::mapping::chess::ChessStdMapper;
 use kz_core::mapping::go::GoStdMapper;
+use kz_core::mapping::trictrac::TrictracStdMapper;
 use kz_core::mapping::BoardMapper;
 use kz_core::network::prepared::PreparedNetwork;
 use kz_core::network::symmetry::RandomSymmetryNetwork;
@@ -105,6 +107,12 @@ fn main() -> std::io::Result<()> {
                 ChessBoard::new_without_history_fen(fen, Rules::default())
             });
             main_game(&args, board, ChessStdMapper)
+        }
+        Game::Trictrac => {
+            let board = args.fen.as_ref().map_or(TrictracBoard::default(), |fen| {
+                TrictracBoard::from_fen(fen).expect("Invalid fen")
+            });
+            main_game(&args, board, TrictracStdMapper)
         }
         Game::Ataxx { size } => {
             let board = args.fen.as_ref().map_or(AtaxxBoard::diagonal(size), |fen| {

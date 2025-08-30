@@ -15,6 +15,14 @@
     pkgs.python313Packages.pyqt5
     pkgs.python313Packages.pyqtgraph
     pkgs.python313Packages.darkdetect
+
+
+    # pour burn-rs
+    pkgs.SDL2_gfx
+    #  (compilation sdl2-sys)
+    pkgs.cmake
+    pkgs.libffi
+    pkgs.wayland-scanner
   ];
 
   env.PYTHONPATH = "${./.}/python";
@@ -26,4 +34,5 @@
     pkgs.cudaPackages.cuda_cudart
     pkgs.libclang.lib
   ];
+  env.PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
 }

@@ -16,11 +16,13 @@ use internal_iterator::InternalIterator;
 use kz_core::mapping::arimaa::ArimaaSplitMapper;
 use rand::seq::SliceRandom;
 use rand::thread_rng;
+use trictrac_bot::trictrac_board::TrictracBoard;
 
 use kz_core::mapping::ataxx::AtaxxStdMapper;
 use kz_core::mapping::chess::{ChessHistoryMapper, ChessStdMapper};
 use kz_core::mapping::go::GoStdMapper;
 use kz_core::mapping::sttt::STTTStdMapper;
+use kz_core::mapping::trictrac::TrictracStdMapper;
 use kz_core::mapping::ttt::TTTStdMapper;
 use kz_core::mapping::BoardMapper;
 use kz_core::network::dummy::{uniform_policy, uniform_values};
@@ -58,6 +60,7 @@ fn main() {
         Game::TTT => main_impl(&args, TTTBoard::default, TTTStdMapper),
         Game::STTT => main_impl(&args, STTTBoard::default, STTTStdMapper),
         Game::Chess => main_impl(&args, ChessBoard::default, ChessStdMapper),
+        Game::Trictrac => main_impl(&args, TrictracBoard::default, TrictracStdMapper),
         Game::Ataxx { size } => main_impl(&args, || AtaxxBoard::diagonal(size), AtaxxStdMapper::new(size)),
         Game::ChessHist { length } => main_impl(&args, ChessBoard::default, ChessHistoryMapper::new(length)),
         Game::ArimaaSplit => main_impl(&args, ArimaaBoard::default, ArimaaSplitMapper),

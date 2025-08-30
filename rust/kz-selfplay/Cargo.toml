@@ -29,3 +29,4 @@ rand_distr.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 superluminal-perf.workspace = true
+trictrac-bot.workspace = true

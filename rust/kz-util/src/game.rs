@@ -5,6 +5,7 @@ pub enum Game {
     TTT,
     STTT,
     Chess,
+    Trictrac,
     ChessHist { length: usize },
     Ataxx { size: u8 },
     ArimaaSplit,
@@ -17,6 +18,7 @@ impl Game {
             "ttt" => return Some(Game::TTT),
             "sttt" => return Some(Game::STTT),
             "chess" => return Some(Game::Chess),
+            "trictrac" => return Some(Game::Trictrac),
             "ataxx" => return Some(Game::Ataxx { size: 7 }),
             "arimaa-split" => return Some(Game::ArimaaSplit),
             _ => {}
@@ -45,6 +47,7 @@ impl Display for Game {
             Game::TTT => write!(f, "ttt"),
             Game::STTT => write!(f, "sttt"),
             Game::Chess => write!(f, "chess"),
+            Game::Trictrac => write!(f, "trictrac"),
             Game::ChessHist { length } => write!(f, "chess-hist-{}", length),
             Game::Ataxx { size } => write!(f, "ataxx-{}", size),
             Game::ArimaaSplit => write!(f, "arimaa-split"),

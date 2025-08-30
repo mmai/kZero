@@ -15,12 +15,14 @@ use flume::{Receiver, Sender};
 use itertools::Itertools;
 use kn_cuda_sys::wrapper::handle::CudaDevice;
 use rand::rngs::StdRng;
+use trictrac_bot::trictrac_board::TrictracBoard;
 
 use kz_core::mapping::arimaa::ArimaaSplitMapper;
 use kz_core::mapping::ataxx::AtaxxStdMapper;
 use kz_core::mapping::chess::{ChessHistoryMapper, ChessStdMapper};
 use kz_core::mapping::go::GoStdMapper;
 use kz_core::mapping::sttt::STTTStdMapper;
+use kz_core::mapping::trictrac::TrictracStdMapper;
 use kz_core::mapping::ttt::TTTStdMapper;
 use kz_core::mapping::BoardMapper;
 use kz_core::network::dummy::NetworkOrDummy;
@@ -179,6 +181,18 @@ fn selfplay_start_dispatch_game(
                 startup_settings,
                 |_| ArimaaBoard::default(),
                 ArimaaSplitMapper,
+                reader,
+                writer,
+            )
+        }
+        Game::Trictrac => {
+            assert_eq!(startup_settings.start_pos, "default");
+            selfplay_start_dispatch_spec_non_alt(
+                game,
+                devices,
+                startup_settings,
+                |_| TrictracBoard::default(),
+                TrictracStdMapper,
                 reader,
                 writer,
             )

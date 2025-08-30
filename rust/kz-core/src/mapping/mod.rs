@@ -11,6 +11,7 @@ pub mod bit_buffer;
 pub mod chess;
 pub mod go;
 pub mod sttt;
+pub mod trictrac;
 pub mod ttt;
 
 /// A way to encode a board as a tensor.

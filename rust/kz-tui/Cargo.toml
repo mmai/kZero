@@ -11,6 +11,7 @@ kn-graph.workspace = true
 kn-runtime.workspace = true
 
 board-game.workspace = true
+trictrac-bot.workspace = true
 clap.workspace = true
 crossterm.workspace = true
 decorum.workspace = true
