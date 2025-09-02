@@ -5,8 +5,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Base packages for building
 RUN apt-get update && apt-get install -y \
-    git curl build-essential pkg-config cmake \
-    libssl-dev ca-certificates tmux nano \
+    git curl build-essential pkg-config cmake clang \
+    libssl-dev ca-certificates tmux neovim \
+    libsdl2-gfx libsdl2-gfx-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # CUDA env (toolkit available at /usr/local/cuda in *-devel images)
