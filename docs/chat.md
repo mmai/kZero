@@ -17,11 +17,11 @@ Fichier principal : rust/kz-core/src/mapping/trictrac.rs
 
 Déroulement :
 
-1.  Analyse : Nous avons analysé les implémentations existantes pour les échecs (chess.rs) et le Go (go.rs)
+1. Analyse : Nous avons analysé les implémentations existantes pour les échecs (chess.rs) et le Go (go.rs)
     dans kZero afin de comprendre l'architecture attendue. Nous avons également étudié votre code existant
     dans le projet trictrac (training_common.rs et game.rs) pour comprendre la logique du jeu.
 
-2.  Planification : Après une discussion et une correction de ma compréhension des règles du Trictrac
+2. Planification : Après une discussion et une correction de ma compréhension des règles du Trictrac
     (notamment grâce à la structure GameState et la fonction to_string_id), nous avons convenu d'un plan
     pour l'implémentation des traits :
     - `PolicyMapper`: Utiliser votre énumération TrictracAction et TRICTRAC_ACTION_SPACE (taille 51) pour
@@ -33,10 +33,18 @@ Déroulement :
         trous, can_bredouille, can_big_bredouille).
     - `MuZeroMapper`: Mettre en place une structure de base pour l'encodage des mouvements.
 
-3.  Réalisation : J'ai écrit et sauvegardé une première version complète de
+3. Réalisation : J'ai écrit et sauvegardé une première version complète de
     rust/kz-core/src/mapping/trictrac.rs contenant la structure TrictracStdMapper et l'implémentation des
     trois traits mentionnés, conformément au plan.
 
 Prochaine étape identifiée :
 Intégrer le nouveau module trictrac.rs dans le reste de la caisse kz-core, en commençant par le déclarer
 dans rust/kz-core/src/mapping/mod.rs.
+
+---
+
+Le dossier courant est un fork de kZero, un projet permettant d'entrainer des AI sur des jeux de plateau. Je cherche à ajouter le jeu de trictrac à la liste des jeux déjà supportés (chess, go, ataxx).
+
+J'ai fait les modifications dans la partie rust (cf. fichiers rust/kz-core/src/mapping/trictrac.rs et rust/kz-selfplay/src/server/server.rs ).
+Il faudrait maintenant ajouter la gestion de trictrac dans la partie python. Je crois qu'il faut en particulier toucher aux fichiers python/lib/games.py et python/lib/mapping/mapping.py.
+Peux-tu m'aider ?

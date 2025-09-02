@@ -29,6 +29,9 @@ class Game:
     name: str
 
     board_size: int
+    board_height: Optional[int] = None
+    board_width: Optional[int] = None
+
     input_bool_channels: int
     input_scalar_channels: int
     input_mv_channels: Optional[int]
@@ -52,14 +55,19 @@ class Game:
     symmetry: Symmetry
 
     def __post_init__(self):
-        self.input_bool_shape = (self.input_bool_channels, self.board_size, self.board_size)
-        self.input_scalar_shape = (self.input_scalar_channels, self.board_size, self.board_size)
+        if self.board_height is None:
+            self.board_height = self.board_size
+        if self.board_width is None:
+            self.board_width = self.board_size
+
+        self.input_bool_shape = (self.input_bool_channels, self.board_height, self.board_width)
+        self.input_scalar_shape = (self.input_scalar_channels, self.board_height, self.board_width)
 
         self.full_input_channels = self.input_bool_channels + self.input_scalar_channels
-        self.full_input_shape = (self.full_input_channels, self.board_size, self.board_size)
+        self.full_input_shape = (self.full_input_channels, self.board_height, self.board_width)
 
         if self.input_mv_channels is not None:
-            self.input_mv_shape = (self.input_mv_channels, self.board_size, self.board_size)
+            self.input_mv_shape = (self.input_mv_channels, self.board_height, self.board_width)
         else:
             self.input_mv_shape = None
 
@@ -280,5 +288,20 @@ GAMES = {
         encode_mv=None,
         possible_mvs=range(1 + 6 + 256),
         symmetry=UnitSymmetry(),
-    )
+    ),
+    "trictrac": Game(
+        name="trictrac",
+        board_size=24,
+        board_height=24,
+        board_width=1,
+        input_bool_channels=30,
+        input_scalar_channels=15,
+        input_mv_channels=None,
+        policy_shape=(514,),
+        policy_conv_channels=None,
+        estimate_moves_per_game=150,
+        encode_mv=None,
+        possible_mvs=range(514),
+        symmetry=UnitSymmetry(),
+    ),
 }
