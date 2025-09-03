@@ -12,7 +12,7 @@ from lib.train import TrainSettings, ScalarTarget
 
 
 def main():
-    game = Game.find("go-9")
+    game = Game.find("trictrac")
 
     fixed_settings = FixedSelfplaySettings(
         game=game,
@@ -79,7 +79,7 @@ def main():
 
     # TODO implement retain setting, maybe with a separate training folder even
     settings = LoopSettings(
-        gui=sys.platform == "win32",
+        gui=sys.platform == "linux",
         root_path=f"data/loop/{game.name}/first/",
         port=63105,
         wait_for_new_network=True,
