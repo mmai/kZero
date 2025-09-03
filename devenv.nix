@@ -25,7 +25,6 @@
     pkgs.wayland-scanner
   ];
 
-  env.PYTHONPATH = "${./.}/python";
   env.CUDA_PATH = "${pkgs.cudatoolkit}";
   env.LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
   env.LD_LIBRARY_PATH = lib.makeLibraryPath [
